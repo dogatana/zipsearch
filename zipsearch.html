@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang='ja'>
+  <head>
+    <title>郵便番号住所検索</title>
+    <meta charset='utf-8'>
+    <script>
+      function parse(data) {
+        console.log(data);
+        var msg = document.getElementById('message');
+        msg.textContent = '';
+        if (data.status !== 200) {
+          msg.textContent = data.message;  
+          return;
+        } else if (data.results === null) {
+          msg.textContent = '正しい郵便番号を入力してください';
+          return;
+        }
+        var results = data.results;
+        for (var i = 0; i < results.length; i++) {
+           var addr = results[i];
+           document.getElementById('addr1').textContent = addr.address1;
+           document.getElementById('addr2').textContent = addr.address2;
+           document.getElementById('addr3').textContent = addr.address3;
+        }
+      }
+      window.onload = function() {
+        var button = document.getElementById('button');
+        button.onclick = function() {
+          var code = document.getElementById('code').value
+          console.log(code);
+          var script = document.createElement('script');
+          script.src = 'http://zipcloud.ibsnet.co.jp/api/search?callback=parse&zipcode=' + code;
+          document.body.appendChild(script);
+          document.body.removeChild(script);
+        }
+      }
+    </script>
+    <style type='text/css'>
+      #message {
+        margin-top: 20px;
+        color: red;
+      } 
+    </style>
+  </head>
+  <body>
+    <h1>郵便番号住所検索</h1>
+    <table>
+      <tr>
+        <th>郵便番号</th>
+        <td>
+          <input type='text' id='code'>
+          <input type='button' id='button' value='検索'>
+        </td>
+      </tr>
+      <tr>
+        <th>都道府県</th>
+        <td id='addr1'></td>
+      </tr>
+      <tr>
+        <th>市区町村</th>
+        <td id='addr2'></td>
+      </tr>
+      <tr>
+        <th>町域</th>
+        <td id='addr3'></td>
+      </tr>
+    </table>
+    <div id='message'></div>
+  </body>
+</html>
