@@ -36,35 +36,72 @@
       }
     </script>
     <style type='text/css'>
+      body {
+        font-family: Helvetica ,"游ゴシック" ,"Yu Gothic" ,sans-serif;
+      }
+      #table {
+        //background-color: gray;
+        margin-left: 20px;
+      }
+      .container {
+        display: table;
+        width: 350px;
+        border-top: 1px solid black;
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+      }
+      .container:last-child {
+        border-bottom: 1px solid black;
+      }
+      .container label {
+        color: white;
+        background-color: dimgray;
+        width: 80px;
+        display: table-cell;
+        padding: 5px;
+        vertical-align: middle;
+        height: 35px;
+      }
+      .container .data {
+        display: table-cell;
+        margin: 5px;
+        padding: 10px;
+      }
       #message {
         margin-top: 20px;
+        margin-left: 20px;
         color: red;
       } 
     </style>
   </head>
   <body>
     <h1>郵便番号住所検索</h1>
-    <table>
-      <tr>
-        <th>郵便番号</th>
-        <td>
+
+    <div id='table'>
+      <div class='container'>
+        <label>郵便番号</label>
+        <div class='data'>
           <input type='text' id='code'>
-          <input type='button' id='button' value='検索'>
-        </td>
-      </tr>
-      <tr>
-        <th>都道府県</th>
-        <td id='addr1'></td>
-      </tr>
-      <tr>
-        <th>市区町村</th>
-        <td id='addr2'></td>
-      </tr>
-      <tr>
-        <th>町域</th>
-        <td id='addr3'></td>
-      </tr>
-    </table>
+          <input type='button' id='button' value='住所検索'>
+        </div>
+      </div>
+
+      <div class='container'>
+        <label>都道府県</label>
+        <div class='data' id='addr1'></div>
+      </div>
+
+      <div class='container'>
+        <label>市区町村</label>
+        <div class='data' id='addr2'></div>
+      </div>
+
+      <div class='container'>
+        <label>町番地</label>
+        <div class='data' id='addr3'></div>
+      </div>
+    </div>
+
     <div id='message'></div>
   </body>
 </html>
