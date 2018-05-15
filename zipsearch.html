@@ -39,6 +39,9 @@
       body {
         font-family: Helvetica ,"游ゴシック" ,"Yu Gothic" ,sans-serif;
       }
+      h1 {
+        padding-left: 20px;
+      }
       #table {
         //background-color: gray;
         margin-left: 20px;
@@ -67,6 +70,11 @@
         margin: 5px;
         padding: 10px;
       }
+
+      #code {
+        margin-right: 10px;
+        width: 100px;
+     }
       #message {
         margin-top: 20px;
         margin-left: 20px;
@@ -81,7 +89,7 @@
       <div class='container'>
         <label>郵便番号</label>
         <div class='data'>
-          <input type='text' id='code'>
+          <input type='text' id='code' size='8'>
           <input type='button' id='button' value='住所検索'>
         </div>
       </div>
